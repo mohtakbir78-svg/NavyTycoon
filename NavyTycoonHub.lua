@@ -574,7 +574,7 @@ local function resetAll()
 end
 
 -- ============================================
---QUICK BUTTONS
+-- QUICK BUTTONS
 -- ============================================
 local quickList = {
     {"fly",      "✈️"},
@@ -1114,27 +1114,6 @@ end)
 -- DRAG
 -- ============================================
 titleBar.InputBegan:Connect(function(inp)
-    if inp.UserInputType == Enum.UserInputType.Touch
-    or inp.UserInputType == Enum.UserInputType.MouseButton1 then
-        STATE.dragging = true
-        STATE.dragStart = inp.Position
-        STATE.dragFrame = main.Position
-    end
-end)
-titleBar.InputChanged:Connect(function(inp)
-    if not STATE.dragging then return end
-    if inp.UserInputType == Enum.UserInputType.Touch
-    or inp.UserInputType == Enum.UserInputType.MouseMovement then
-        pcall(function()
-            local d = inp.Position - STATE.dragStart
-            main.Position = UDim2.new(
-                STATE.dragFrame.X.Scale, STATE.dragFrame.X.Offset + d.X,
-                STATE.dragFrame.Y.Scale, STATE.dragFrame.Y.Offset + d.Y
-            )
-        end)
-    end
-end)
-titleBar.InputEnded:Connect(function(inp)
     if inp.UserInputType == Enum.UserInputType.Touch
     or inp.UserInputType == Enum.UserInputType.MouseButton1 then
         STATE.dragging = true
